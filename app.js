@@ -18,10 +18,15 @@ var loader = require("./loader");
 var port = process.env.OPENSHIFT_NODEJS_PORT || 2518 ;
 var ip = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
 
-app.get('/id:id',function(req,res){
+app.get('/id:id-:instart',function(req,res){
 	var id = req.params.id;
+	var instart= req.params.instart;
+	if (instart<0){
+		instart = 0;
+	}
 	if (id>0){
-		loader(id);
+
+		loader(id,instart);
 		res.send('file GO');
 	}
 })

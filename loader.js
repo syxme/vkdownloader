@@ -16,7 +16,7 @@ var transliterate = function(word) {
   })(this)).join("");
 };
 
-loader = function(owner_id){
+loader = function(owner_id,instart){
 	console.log('start');
 	vk = new VK({
 	   'appId'     : '5016020',
@@ -51,31 +51,31 @@ loader = function(owner_id){
 				console.timeEnd('ya:up');
 				console.timeEnd('PROCESSS TIME');
 				idx++;
-				fs.unlinkSync(urlme);
-				if (idx<items.length){
-					console.log(name,'uploaded');
-
-					console.log('Next File upload');
-					processW(idx,items,acc);
-
-				}else{
-					disk.publish(acc, function(err,dir){
-						console.log(dir);
-					});	
-				}
+				fs.unlink(urlme,function(err){
+					if (idx<items.length){
+						console.log(idx-1,'success');
+						console.log('Next File upload');
+						processW(idx,items,acc);
+					}else{
+						disk.publish(acc, function(err,dir){
+							console.log(dir);
+						});	
+					}
+				});
+				
 
 				
 			});
 		});
 	}
-	
+
 	vk.request('audio.get', {owner_id:owner_id}, function(_o) {
 		items = _o.response.items;
 		if (items.length>0){
 			console.log('StartPP');
 			fs.mkdir(owner_id,function(err){
 				disk.mkdir(owner_id, function(err,e){
-					processW(0,items,owner_id);
+					processW(instart,items,owner_id);
 				});
 			});
 			
