@@ -13,10 +13,18 @@ app.use(cookieParser());
 //app.use(session({ secret: "dfI3dD43220jhsdjjjsdkoen",saveUninitialized: true,resave: true}));
 
 
-var loader = require("./loader")();
+var loader = require("./loader");
 
 var port = process.env.OPENSHIFT_NODEJS_PORT || 2518 ;
 var ip = process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1";
+
+app.get('/id:id',function(req,res){
+	var id = req.params.id;
+	if (id>0){
+		loader(id);
+		res.send('file GO');
+	}
+})
 
 
 server.listen(port, ip);
