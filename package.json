@@ -22,6 +22,8 @@
   "dependencies": {
     "body-parser": "^1.15.0",
     "cookie-parser": "^1.4.1",
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "querystring": "^0.2.0",
+    "vksdk": "^5.3.1"
   }
 }

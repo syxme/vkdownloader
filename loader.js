@@ -1,49 +1,21 @@
-var	http	= require('http'),
-	https   = require('https');
+var	http	= require('http'), 
+	fs 		= require('fs'),
+	https	 = require('https');
+var VK = require('vksdk');
 
 loader = function(){
 
-  // var post_data = querystring.stringify({
-  //     'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
-  //     'output_format': 'json',
-  //     'output_info': 'compiled_code',
-  //       'warning_level' : 'QUIET',
-  //       'js_code' : codestring
-  // });
-  var post_options = {
-      host: 'closure-compiler.appspot.com',
-      port: '80',
-      path: '/compile',
-      method: 'POST'
-      // headers: {
-      //     'Content-Type': 'application/x-www-form-urlencoded',
-      //     'Content-Length': Buffer.byteLength(post_data)
-      // }
-  };
-  var options = {
-        host: 'm.vk.com',
-        port: 80
-        //path: '/api.php?' + requestString
-    };
-
-
-
-	https.get(options, function(res) {
-        var apiResponse = 'as';
-        res.setEncoding('utf8');
-        console.log('statusCode: ', res.statusCode);
-  		console.log('headers: ', res.headers);
-
-        res.on('data', function(chunk) {
-            apiResponse += chunk;
-        });
-
-        res.on('end', function() {
-        	console.log(apiResponse);    
-        });
-    }).on('error', function (e) {
-       console.log(e);
-    });
+	vk = new VK({
+	   'appId'     : '5016020',
+	   'appSecret' : 'S3e22qAKkEWi36nENw9T',
+	   'language'  : 'ru',
+	   'mode'      : 'oauth'
+	});
+	vk.setToken('9e5be728c13d570fdcef85ec5f9193eb7ea1964c97bfe62ab330e496bce41629628ec788f64b30a172445');
+	vk.setSecureRequests(true);
+	vk.request('audio.get', {owner_id:65539100}, function(_o) {
+		console.log(_o.response.items);
+	});
 
 }
 
