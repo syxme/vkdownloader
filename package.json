@@ -1,0 +1,27 @@
+{
+  "name": "vkmusic",
+  "version": "1.0.0",
+  "description": "Download music",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syxme/vkdownloader.git"
+  },
+  "keywords": [
+    "vk"
+  ],
+  "author": "Dmitry Shebaldin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syxme/vkdownloader/issues"
+  },
+  "homepage": "https://github.com/syxme/vkdownloader#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cookie-parser": "^1.4.1",
+    "express": "^4.13.4"
+  }
+}
